@@ -1,0 +1,16 @@
+.app {
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+/* 可交互元素统一手型（原生指针） */
+a,
+button,
+[role="button"],
+.polaroid,
+.year-label,
+.project-card,
+.about-tag,
+label {
+  cursor: pointer;
+}

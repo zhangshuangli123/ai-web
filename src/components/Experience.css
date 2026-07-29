@@ -1,0 +1,445 @@
+.experience__intro {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+  max-width: 720px;
+}
+.experience__hint {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--klein-blue);
+  margin-left: 12px;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+/* ============================================
+   舞台
+   ============================================ */
+.polaroid-stage {
+  position: relative;
+  width: 100%;
+  padding: 20px 0 20px;
+  min-height: 560px;
+}
+
+/* ============================================
+   扇形卡片堆
+   ============================================ */
+.polaroid-fan {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1800px;
+}
+
+.polaroid {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -110px;  /* 卡片宽度 220 / 2 */
+  width: 220px;
+  height: 300px;
+  cursor: pointer;
+  outline: none;
+  will-change: transform;
+}
+.polaroid:focus-visible {
+  outline: 2px solid var(--klein-blue);
+  outline-offset: 4px;
+}
+
+/* 3D 翻转容器：独立一层，不受外壳 rotate/scale 影响 */
+.polaroid__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.4,0,.2,1);
+  /* 给内芯自己的 3D 视角，避免被外层 transform 扁平化 */
+  perspective: 1400px;
+}
+.polaroid--flipped .polaroid__inner {
+  transform: rotateY(180deg);
+}
+
+.polaroid__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #FEFDF9;
+  padding: 10px 10px 14px;
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.05),
+    0 16px 32px -10px rgba(0,20,80,0.18);
+  border-radius: 3px;
+  transition: box-shadow .35s ease;
+  opacity: 1;
+}
+.polaroid:hover .polaroid__face {
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.06),
+    0 30px 60px -10px rgba(0,20,80,0.28);
+}
+.polaroid--active .polaroid__face {
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.08),
+    0 40px 80px -15px rgba(0,20,80,0.35);
+}
+
+/* ---------- 正面：照片 + 标题 ---------- */
+.polaroid__face--front {
+  background: transparent;
+}
+.polaroid__photo {
+  flex: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.polaroid__photo-placeholder {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 22px;
+  opacity: 0.85;
+  letter-spacing: 0.02em;
+}
+.polaroid__caption {
+  padding: 10px 4px 0;
+  text-align: center;
+}
+.polaroid__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 2px;
+  letter-spacing: -0.005em;
+}
+.polaroid__subtitle {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+}
+
+/* ---------- 背面：详情 ---------- */
+.polaroid__face--back {
+  transform: rotateY(180deg);
+  background: linear-gradient(160deg, #FEFDF9 0%, #F7F5EE 100%);
+  padding: 20px 18px 16px;
+  border-radius: 3px;
+}
+.polaroid__era-back {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--klein-blue);
+  margin-bottom: 10px;
+  display: block;
+}
+.polaroid__back-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--klein-blue);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.polaroid__back-place {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.polaroid__back-place em { font-style: italic; color: var(--klein-blue); }
+.polaroid__divider {
+  width: 30px;
+  height: 1px;
+  background: var(--klein-blue);
+  opacity: 0.4;
+  margin-bottom: 10px;
+}
+.polaroid__desc {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.polaroid__desc::-webkit-scrollbar { width: 3px; }
+.polaroid__desc::-webkit-scrollbar-thumb {
+  background: rgba(0,47,167,0.25);
+  border-radius: 2px;
+}
+.polaroid__flip-hint {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--klein-blue);
+  opacity: 0.55;
+  text-align: right;
+}
+
+/* ============================================
+   底部年份带（半圆弧形）
+   统一坐标系：SVG viewBox 100×60，圆心在 (50, 60)
+   所有元素（弧、刻度、标签、指针）都基于同一圆心和半径
+   ============================================ */
+/* 拨盘容器：SVG 区（100:60 比例）+ 底部按钮 34px */
+.year-band {
+  position: relative;
+  margin: 10px auto 0;
+  width: min(480px, 90vw);
+  z-index: 20;
+}
+/* SVG 区（扁平化：100:40 比例，比之前 100:60 矮 33%） */
+.year-band__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 100 / 40;
+}
+/* 按钮区 */
+.year-band__foot {
+  position: relative;
+  height: 34px;
+  margin-top: 6px;
+}
+
+/* 半圆弧线 SVG —— 完全铺满 stage（严格 100:60），作为坐标基准 */
+.year-band__arc {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.year-band__arc line,
+.year-band__arc circle {
+  pointer-events: auto;
+}
+.year-band__arc circle:hover ~ line,
+.year-band__arc circle:hover {
+  opacity: 0.9;
+}
+
+/* 年份标签容器：跟 SVG 铺同区（严格 100:60） */
+.year-band__labels {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.year-label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  color: var(--ink-muted);
+  transition: color .3s ease, transform .3s ease;
+  outline: none;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+.year-label__year {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  transition: font-size .3s ease, color .3s ease, font-weight .3s ease;
+}
+.year-label__sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 10px;
+  color: var(--ink-muted);
+  opacity: 0.7;
+  transition: opacity .3s ease, color .3s ease;
+}
+.year-label:hover .year-label__year { color: var(--klein-blue); }
+.year-label--active .year-label__year {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--klein-blue);
+  letter-spacing: 0.02em;
+}
+.year-label--active .year-label__sub {
+  color: var(--klein-blue);
+  opacity: 1;
+}
+
+/* 指针：从 stage 底部（圆心水平线）向上旋转
+   长度 = stage 高度 × (25/40) —— 对应 SVG viewBox 椭圆内圈半径 RY=25 */
+.year-band__pointer {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 2px;
+  height: calc(100% * 25 / 40);
+  transform-origin: 50% 100%;
+  transition: transform .8s cubic-bezier(.34,1.56,.64,1);
+  z-index: 3;
+  pointer-events: none;
+}
+.year-band__stem {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to top,
+    var(--klein-blue) 0%,
+    var(--klein-blue) 70%,
+    rgba(0,47,167,0.4) 100%);
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(0,47,167,0.35);
+}
+.year-band__tri {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 8px solid var(--klein-blue);
+  filter: drop-shadow(0 0 3px rgba(0,47,167,0.4));
+}
+
+/* 圆心小圆点：在 stage 底部中央 */
+.year-band__hub {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--klein-blue);
+  box-shadow:
+    0 0 0 3px var(--paper),
+    0 0 0 4px rgba(0,47,167,0.25);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* 左右按钮：在 foot 区 */
+.year-band__nav {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--paper);
+  border: 1px solid rgba(0,47,167,0.3);
+  color: var(--klein-blue);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all .3s ease;
+  padding: 0;
+  z-index: 5;
+}
+.year-band__nav:hover:not(:disabled) {
+  background: var(--klein-blue);
+  color: #fff;
+  border-color: var(--klein-blue);
+}
+.year-band__nav:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  border-color: var(--line);
+  color: var(--ink-muted);
+}
+.year-band__nav--prev { left: calc(50% - 60px); }
+.year-band__nav--next { right: calc(50% - 60px); }
+
+
+/* ============================================
+   移动端 fallback
+   ============================================ */
+.arc-mobile { display: none; }
+
+@media (max-width: 900px) {
+  .polaroid-stage { display: none; }
+  .arc-mobile {
+    display: block;
+    margin-top: 20px;
+    border-left: 1px solid var(--line);
+    padding-left: 20px;
+  }
+  .arc-mobile__item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .arc-mobile__item:last-child { border-bottom: none; }
+  .arc-mobile__era {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--klein-blue);
+    margin-bottom: 8px;
+  }
+  .arc-mobile__item h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .arc-mobile__org {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .arc-mobile__org em { color: var(--klein-blue); font-style: italic; }
+  .arc-mobile__desc {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polaroid__inner { transition-duration: 0.3s !important; }
+  .year-band__pointer { transition-duration: 0.2s !important; }
+}

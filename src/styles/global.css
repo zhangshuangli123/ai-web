@@ -1,0 +1,99 @@
+:root {
+  --klein-blue: #002FA7;
+  --klein-blue-light: #3d6ae8;
+  --paper: #F5F5F5;
+  --paper-warm: #F8F6F1;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #8a8a8a;
+  --line: rgba(0, 47, 167, 0.15);
+
+  --font-serif: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  --font-sans: 'Noto Serif SC', 'Cormorant Garamond', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-hand: 'Caveat', cursive;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-serif);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--klein-blue);
+  text-decoration: none;
+  transition: opacity .2s ease;
+}
+a:hover { opacity: .7; }
+
+img { max-width: 100%; display: block; }
+
+::selection { background: var(--klein-blue); color: var(--paper); }
+
+/* 通用 */
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--klein-blue);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--klein-blue);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 48px;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--klein-blue);
+}
+
+/* 淡入 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .section { padding: 80px 0; }
+}

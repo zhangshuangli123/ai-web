@@ -1,0 +1,139 @@
+.contact {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact .section-label {
+  color: rgba(0, 0, 0, 0.5);
+}
+.contact .section-label::before {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.contact__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 900px;
+}
+.contact__title em {
+  font-style: italic;
+  color: var(--klein-blue);
+}
+
+/* ============ Resume 卡片 ============ */
+.contact__resume {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.contact__resume-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  margin-bottom: 4px;
+}
+
+.contact__resume-hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: none;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+.contact__resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 26px 16px 22px;
+  background: transparent;
+  border: 1px solid rgba(0, 47, 167, 0.35);
+  border-radius: 999px;
+  color: var(--klein-blue);
+  text-decoration: none;
+  font-family: var(--font-serif);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  min-width: 320px;
+}
+
+.contact__resume-btn:hover {
+  background: var(--klein-blue);
+  color: #fff;
+  border-color: var(--klein-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 47, 167, 0.25);
+}
+
+.contact__resume-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.35s ease;
+}
+
+.contact__resume-btn:hover .contact__resume-ico {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.contact__resume-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  flex: 1;
+}
+
+.contact__resume-title {
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+.contact__resume-sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.contact__resume-arrow {
+  font-size: 22px;
+  transition: transform 0.35s cubic-bezier(0.22, 1.4, 0.36, 1);
+  margin-left: 4px;
+}
+
+.contact__resume-btn:hover .contact__resume-arrow {
+  transform: translateY(4px);
+}
+
+@media (max-width: 640px) {
+  .contact { padding: 80px 0 100px; }
+  .contact__title { font-size: 30px; margin-bottom: 24px; }
+  .contact__resume { margin-top: 40px; }
+  .contact__resume-btn {
+    min-width: 280px;
+    padding: 14px 22px 14px 18px;
+  }
+  .contact__resume-title { font-size: 14px; }
+}
