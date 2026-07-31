@@ -15,6 +15,13 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* 打印/导出PDF时：fixed 定位会在每个分页处重复渲染，压在正文上造成文字重叠，直接隐藏 */
+@media print {
+  .nav {
+    display: none;
+  }
+}
+
 .nav__inner {
   display: flex;
   align-items: center;
