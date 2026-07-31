@@ -139,6 +139,14 @@ export default function Hero() {
         <div className="hero__ring" />
       </div>
       <div className="hero__inner container">
+        <a
+          className="hero__live-link"
+          href="https://zhangshuangli123.github.io/ai-web/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ↗ zhangshuangli123.github.io/ai-web
+        </a>
         <p className="hero__eyebrow">
           <span className="hero__eyebrow-line" />
           Portfolio / 2026

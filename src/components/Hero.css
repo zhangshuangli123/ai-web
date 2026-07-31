@@ -273,6 +273,37 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.hero__live-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  text-decoration: none;
+  margin-bottom: 14px;
+  opacity: 0;
+  animation: fadeUp .8s ease 0s forwards;
+  transition: color .25s ease;
+}
+.hero__live-link:hover {
+  color: var(--klein-blue);
+}
+
+/* 打印/导出PDF时：网站上是低调小字，PDF里放大加粗，方便读者直接点击跳转到在线主页 */
+@media print {
+  .hero__live-link {
+    display: inline-flex !important;
+    opacity: 1 !important;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--klein-blue) !important;
+    text-decoration: underline;
+    margin-bottom: 18px;
+  }
+}
+
 @media (max-width: 640px) {
   .hero__orb--1 { width: 380px; height: 380px; right: -30%; }
   .hero__orb--2 { width: 260px; height: 260px; }
@@ -283,3 +314,4 @@
 @media (prefers-reduced-motion: reduce) {
   .hero__orb, .hero__ring, .hero__cursor { animation: none !important; }
 }
+
